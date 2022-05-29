@@ -1,17 +1,16 @@
-import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
 public class BooleanSearchEngine implements SearchEngine {
     
 	private WordIndex wordIndex;
 	
-    public BooleanSearchEngine(WordIndex wordIndex) throws IOException {
+    public BooleanSearchEngine(WordIndex wordIndex) {
     	this.wordIndex = wordIndex;
     }
 
     @Override
     public List<PageEntry> search(String word) {
-    	return wordIndex.getEntries(word);
+    	return wordIndex.getEntries(word.toLowerCase());
     }
     
 }

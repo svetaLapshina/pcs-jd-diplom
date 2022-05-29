@@ -1,7 +1,4 @@
 import java.io.File;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +21,9 @@ public class IndexBuilder {
 		int numberOfPages = document.getNumberOfPages();
 		for (int pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
 			List<String> words = document.getWordsFromPage(pageNumber);				
-			Map<String, Integer> frequencies = countWords(words);
+			Map<String, Integer> freqs = countWords(words);
 
-			for (Map.Entry<String, Integer> entry: frequencies.entrySet()) {
+			for (Map.Entry<String, Integer> entry: freqs.entrySet()) {
 				PageEntry pageEntry = new PageEntry(document.getName(), pageNumber, entry.getValue());
 				index.addEntry(entry.getKey(), pageEntry);
 			}
@@ -34,14 +31,14 @@ public class IndexBuilder {
 	}
 		
 	private Map<String, Integer> countWords(List<String> words) {
-		Map<String, Integer> frequencies = new HashMap<>();
+		Map<String, Integer> freqs = new HashMap<>();
 		for (var word : words) {
 		    if (word.isEmpty()) {
 		        continue;
 		    }
-		    frequencies.put(word.toLowerCase(), frequencies.getOrDefault(word.toLowerCase(), 0) + 1);
+		    freqs.put(word.toLowerCase(), freqs.getOrDefault(word.toLowerCase(), 0) + 1);
 		}
 		
-		return frequencies;
+		return freqs;
 	}	
 }

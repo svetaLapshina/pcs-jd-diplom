@@ -29,6 +29,8 @@ public class PageEntry implements Comparable<PageEntry> {
     			.thenComparing(PageEntry::getPage, Comparator.reverseOrder())
     			.thenComparing(PageEntry::getPdfName)
     			.compare(other, this);
+    	
+		//return other.count - count;
 	}
     
     @Override
@@ -43,4 +45,6 @@ public class PageEntry implements Comparable<PageEntry> {
     public boolean equals(PageEntry other) {
     	return pdfName.equals(other.pdfName) && page == other.page && count == other.count;
     }
+
+    // ???
 }

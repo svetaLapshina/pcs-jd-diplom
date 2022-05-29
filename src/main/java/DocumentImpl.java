@@ -19,6 +19,7 @@ public class DocumentImpl implements Document {
 		try {
 			document = Optional.of(new PdfDocument(new PdfReader(file)));
 		} catch (IOException e) {
+			// Log error
 			e.printStackTrace();
 		}
 	}
@@ -40,6 +41,7 @@ public class DocumentImpl implements Document {
 			String text = PdfTextExtractor.getTextFromPage(page);
 			return Arrays.asList(text.split("\\P{IsAlphabetic}+"));
 		} else {
+			// @todo log error document tree broken
 			return Collections.emptyList();
 		}
 	}
